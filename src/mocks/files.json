@@ -1,0 +1,11 @@
+{
+  "repo-1": [
+    "src/App.tsx",
+    "src/pages/Dashboard.tsx",
+    "src/components/RepoList.tsx"
+  ],
+  "repo-2": [
+    "index.js",
+    "routes/user.js"
+  ]
+}

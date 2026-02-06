@@ -1,34 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+    <div className="min-h-screen bg-gray-900 text-gray-100 flex">
+      {/* Sidebar */}
+      <aside className="w-64 bg-gray-800 p-4">
+        <h1 className="text-xl font-bold mb-6">AI Code Review</h1>
+        <nav className="space-y-2">
+          <div className="cursor-pointer hover:text-white">Repo List</div>
+          <div className="cursor-pointer hover:text-white">Diff Viewer</div>
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <main className="flex-1 p-6">
+        <h2 className="text-2xl font-semibold mb-4">Welcome 👋</h2>
+        <p className="text-gray-400">
+          Select a repository to start reviewing code.
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      </main>
+    </div>
   )
 }
 
