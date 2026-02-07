@@ -2,8 +2,6 @@
 
 A production quality frontend application for visualizing code diffs and AI generated review comments. Built with performance, accessibility, and maintainability as core principles.
 
-** NEW: Upload your own code files for review!** No longer limited to demo data.
-
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
