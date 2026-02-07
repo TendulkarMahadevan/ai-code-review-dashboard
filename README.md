@@ -27,30 +27,6 @@ As AI-assisted code review tools become more common, developers still need fast,
 - **Loading States**: Skeleton screens for better perceived performance
 - **Error Handling**: Graceful error states with user-friendly messages
 
-## Tech Stack
-
-### Core Libraries
-- **React 18.2** - UI library with concurrent features
-- **TypeScript 5.2** - Type safety and enhanced developer experience
-- **Vite 5.0** - Fast build tool and development server
-
-### State Management
-- **Zustand 4.4** - Lightweight state management for UI and filters
-- **React Query 5.17** - Server state management, caching, and data synchronization
-
-### Styling
-- **Tailwind CSS 3.4** - Utility-first CSS framework
-- **Custom Design System** - Distinctive typography and color palette
-  - Primary font: DM Sans
-  - Monospace: JetBrains Mono
-  - Display: Outfit
-
-### Development Tools
-- **ESLint** - Code quality and consistency
-- **Prettier** - Code formatting
-- **Jest** - Unit testing framework
-- **React Testing Library** - Component testing utilities
-
 ## Architecture Decisions
 
 ### State Management Strategy
