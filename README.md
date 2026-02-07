@@ -47,46 +47,7 @@ A production-quality frontend application for visualizing code diffs and AI-gene
 - **Jest** - Unit testing framework
 - **React Testing Library** - Component testing utilities
 
-## 📁 Project Structure
-
-```
-src/
-├── components/          # React components
-│   ├── RepoSelector/   # Repository dropdown selector
-│   ├── FileTree/       # Hierarchical file explorer
-│   ├── DiffViewer/     # Code diff visualization
-│   ├── ReviewComment/  # AI comment display
-│   ├── SeverityBadge/  # Severity level indicator
-│   ├── SearchInput/    # Debounced search input
-│   ├── Skeleton/       # Loading state components
-│   └── UI/             # Reusable UI primitives (Button, Card, Badge)
-├── hooks/              # Custom React hooks
-│   ├── useRepos.ts     # Repository data fetching
-│   ├── useFiles.ts     # File tree data fetching
-│   ├── useDiff.ts      # Diff and review data fetching
-│   └── useKeyboardNavigation.ts  # Keyboard shortcuts
-├── pages/              # Page-level components
-│   └── Dashboard.tsx   # Main dashboard page
-├── store/              # Zustand state management
-│   └── reviewStore.ts  # Global review state
-├── services/           # API and data services
-│   └── api.ts          # Mock API with realistic delays
-├── mocks/              # Mock data (JSON)
-│   ├── repos.json      # Repository data
-│   ├── files.json      # File tree structures
-│   ├── diffs.json      # Diff hunks and lines
-│   └── reviews.json    # AI review comments
-├── utils/              # Utility functions
-│   └── diffHelpers.ts  # Diff formatting and syntax highlighting
-├── types/              # TypeScript type definitions
-│   └── index.ts        # All application types
-└── __tests__/          # Test files
-    ├── FileTree.test.tsx
-    ├── DiffViewer.test.tsx
-    └── severityFilter.test.ts
-```
-
-## 🏗 Architecture Decisions
+## Architecture Decisions
 
 ### State Management Strategy
 
@@ -158,7 +119,7 @@ All features fully accessible without a mouse:
 - Comment filtering
 - Search functionality
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js 18+ and npm 9+
@@ -185,7 +146,7 @@ npm run lint
 ### Development Server
 The app will be available at `http://localhost:3000`
 
-## 🧪 Testing
+## Testing
 
 ### Test Coverage
 - **FileTree Component**: Rendering, interaction, and state updates
@@ -204,7 +165,7 @@ npm test -- --watch
 npm test -- --coverage
 ```
 
-## 🎨 Design Philosophy
+## Design Philosophy
 
 ### Typography Hierarchy
 - **Display**: Outfit (headings, emphasis)
@@ -225,7 +186,7 @@ npm test -- --coverage
 - Generous whitespace
 - Color used purposefully for severity and status
 
-## 📊 Performance Considerations
+## Performance Considerations
 
 ### Bundle Size
 - Tree-shaking enabled via Vite
@@ -244,54 +205,5 @@ npm test -- --coverage
 - Optimistic UI updates
 - Mock delays simulate real network conditions
 
-## 🔮 Future Enhancements
 
-### Potential Features
-- [ ] Virtual scrolling for large file trees
-- [ ] Side-by-side diff view
-- [ ] Comment threading and replies
-- [ ] Export review reports
-- [ ] Dark mode
-- [ ] AI model confidence visualization
-- [ ] Code suggestion acceptance workflow
-- [ ] Real-time collaboration
 
-### Technical Improvements
-- [ ] E2E testing with Playwright
-- [ ] Storybook component documentation
-- [ ] Performance monitoring
-- [ ] Progressive Web App (PWA)
-
-## 📝 Code Style
-
-This project uses:
-- **ESLint** for code quality
-- **Prettier** for formatting
-- **TypeScript strict mode** for type safety
-
-Configuration files:
-- `.eslintrc.cjs` - ESLint rules
-- `.prettierrc` - Prettier formatting
-- `tsconfig.json` - TypeScript configuration
-
-## 🤝 Contributing
-
-1. Follow the existing code style
-2. Write tests for new features
-3. Update documentation as needed
-4. Ensure all tests pass before submitting
-
-## 📄 License
-
-MIT License - feel free to use this project for learning or as a foundation for your own applications.
-
-## 🙏 Acknowledgments
-
-- Design inspiration from modern code review tools (GitHub, GitLab, Gerrit)
-- Tailwind CSS for the excellent utility-first framework
-- React Query team for robust server state management
-- Zustand for simple yet powerful state management
-
----
-
-**Built with ❤️ for developers, by developers**
