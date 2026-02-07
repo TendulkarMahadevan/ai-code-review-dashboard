@@ -7,7 +7,7 @@ A production quality frontend application for visualizing code diffs and AI gene
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
 
 ## Why This Project?
-As AI-assisted code review tools become more common, developers still need fast, readable, and intuitive interfaces to understand and act on AI feedback. This project explores how **modern frontend architecture, thoughtful UX, and performance optimizations** can make AI-powered code review practical and developer-friendly — similar to real-world developer tools.
+As AI-assisted code review tools become more common, developers still need fast, readable, and intuitive interfaces to understand and act on AI feedback. This project explores how modern frontend architecture, thoughtful UX, and performance optimizations can make AI-powered code review practical and developer-friendly — similar to real-world developer tools.
 
 ## Features
 
