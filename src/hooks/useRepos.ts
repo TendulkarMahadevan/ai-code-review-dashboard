@@ -1,10 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import repos from "../mocks/repos.json";
-import { fetchWithDelay } from "../services/api";
-import type { Repo } from "../types";
+import { useQuery } from '@tanstack/react-query'
+import { api } from '../services/api'
 
-export const useRepos = () =>
-  useQuery<Repo[]>({
-    queryKey: ["repos"],
-    queryFn: () => fetchWithDelay(repos),
-  });
+export const useRepos = () => {
+  return useQuery({
+    queryKey: ['repositories'],
+    queryFn: api.fetchRepositories,
+    staleTime: 5 * 60 * 1000,
+  })
+}

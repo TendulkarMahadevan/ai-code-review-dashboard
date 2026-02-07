@@ -1,4 +1,23 @@
 [
-  { "id": "repo-1", "name": "frontend-dashboard" },
-  { "id": "repo-2", "name": "api-service" }
+  {
+    "id": "repo-1",
+    "name": "frontend-app",
+    "owner": "acme-corp",
+    "description": "React-based customer dashboard application",
+    "branch": "main"
+  },
+  {
+    "id": "repo-2",
+    "name": "api-gateway",
+    "owner": "acme-corp",
+    "description": "Node.js API gateway service with GraphQL",
+    "branch": "develop"
+  },
+  {
+    "id": "repo-3",
+    "name": "data-pipeline",
+    "owner": "acme-corp",
+    "description": "Python ETL pipeline for analytics processing",
+    "branch": "main"
+  }
 ]

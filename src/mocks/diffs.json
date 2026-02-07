@@ -1,0 +1,665 @@
+{
+  "file-3": {
+    "id": "file-3",
+    "fileName": "src/components/UserProfile.tsx",
+    "status": "modified",
+    "additions": 12,
+    "deletions": 5,
+    "language": "typescript",
+    "hunks": [
+      {
+        "oldStart": 1,
+        "oldLines": 15,
+        "newStart": 1,
+        "newLines": 22,
+        "lines": [
+          {
+            "lineNumber": 1,
+            "type": "header",
+            "content": "@@ -1,15 +1,22 @@"
+          },
+          {
+            "lineNumber": 2,
+            "oldLineNumber": 1,
+            "newLineNumber": 1,
+            "type": "context",
+            "content": "import React, { useState, useEffect } from 'react'"
+          },
+          {
+            "lineNumber": 3,
+            "oldLineNumber": 2,
+            "newLineNumber": 2,
+            "type": "context",
+            "content": "import { User } from '../types'"
+          },
+          {
+            "lineNumber": 4,
+            "oldLineNumber": 3,
+            "type": "remove",
+            "content": "import { fetchUser } from '../api'"
+          },
+          {
+            "lineNumber": 5,
+            "newLineNumber": 3,
+            "type": "add",
+            "content": "import { useUser } from '../hooks/useUser'"
+          },
+          {
+            "lineNumber": 6,
+            "oldLineNumber": 4,
+            "newLineNumber": 4,
+            "type": "context",
+            "content": ""
+          },
+          {
+            "lineNumber": 7,
+            "oldLineNumber": 5,
+            "newLineNumber": 5,
+            "type": "context",
+            "content": "interface Props {"
+          },
+          {
+            "lineNumber": 8,
+            "oldLineNumber": 6,
+            "newLineNumber": 6,
+            "type": "context",
+            "content": "  userId: string"
+          },
+          {
+            "lineNumber": 9,
+            "oldLineNumber": 7,
+            "type": "remove",
+            "content": "  onUpdate: (user: User) => void"
+          },
+          {
+            "lineNumber": 10,
+            "newLineNumber": 7,
+            "type": "add",
+            "content": "  onUpdate?: (user: User) => void",
+            "hasComment": true
+          },
+          {
+            "lineNumber": 11,
+            "newLineNumber": 8,
+            "type": "add",
+            "content": "  showAvatar?: boolean",
+            "hasComment": true
+          },
+          {
+            "lineNumber": 12,
+            "oldLineNumber": 8,
+            "newLineNumber": 9,
+            "type": "context",
+            "content": "}"
+          },
+          {
+            "lineNumber": 13,
+            "oldLineNumber": 9,
+            "newLineNumber": 10,
+            "type": "context",
+            "content": ""
+          },
+          {
+            "lineNumber": 14,
+            "oldLineNumber": 10,
+            "type": "remove",
+            "content": "export const UserProfile: React.FC<Props> = ({ userId, onUpdate }) => {"
+          },
+          {
+            "lineNumber": 15,
+            "newLineNumber": 11,
+            "type": "add",
+            "content": "export const UserProfile: React.FC<Props> = ({ userId, onUpdate, showAvatar = true }) => {"
+          },
+          {
+            "lineNumber": 16,
+            "oldLineNumber": 11,
+            "type": "remove",
+            "content": "  const [user, setUser] = useState<User | null>(null)"
+          },
+          {
+            "lineNumber": 17,
+            "oldLineNumber": 12,
+            "type": "remove",
+            "content": "  const [loading, setLoading] = useState(true)"
+          },
+          {
+            "lineNumber": 18,
+            "newLineNumber": 12,
+            "type": "add",
+            "content": "  const { user, loading, error } = useUser(userId)",
+            "hasComment": true
+          },
+          {
+            "lineNumber": 19,
+            "oldLineNumber": 13,
+            "newLineNumber": 13,
+            "type": "context",
+            "content": ""
+          },
+          {
+            "lineNumber": 20,
+            "newLineNumber": 14,
+            "type": "add",
+            "content": "  if (loading) return <div>Loading...</div>"
+          },
+          {
+            "lineNumber": 21,
+            "newLineNumber": 15,
+            "type": "add",
+            "content": "  if (error) return <div>Error: {error.message}</div>"
+          },
+          {
+            "lineNumber": 22,
+            "newLineNumber": 16,
+            "type": "add",
+            "content": "  if (!user) return null"
+          },
+          {
+            "lineNumber": 23,
+            "newLineNumber": 17,
+            "type": "add",
+            "content": ""
+          },
+          {
+            "lineNumber": 24,
+            "oldLineNumber": 14,
+            "newLineNumber": 18,
+            "type": "context",
+            "content": "  return ("
+          },
+          {
+            "lineNumber": 25,
+            "oldLineNumber": 15,
+            "newLineNumber": 19,
+            "type": "context",
+            "content": "    <div className=\"user-profile\">"
+          },
+          {
+            "lineNumber": 26,
+            "newLineNumber": 20,
+            "type": "add",
+            "content": "      {showAvatar && <img src={user.avatar} alt={user.name} />}"
+          },
+          {
+            "lineNumber": 27,
+            "newLineNumber": 21,
+            "type": "add",
+            "content": "      <h2>{user.name}</h2>"
+          },
+          {
+            "lineNumber": 28,
+            "newLineNumber": 22,
+            "type": "add",
+            "content": "      <p>{user.email}</p>"
+          },
+          {
+            "lineNumber": 29,
+            "newLineNumber": 23,
+            "type": "context",
+            "content": "    </div>"
+          },
+          {
+            "lineNumber": 30,
+            "newLineNumber": 24,
+            "type": "context",
+            "content": "  )"
+          },
+          {
+            "lineNumber": 31,
+            "newLineNumber": 25,
+            "type": "context",
+            "content": "}"
+          }
+        ]
+      }
+    ]
+  },
+  "file-5": {
+    "id": "file-5",
+    "fileName": "src/components/LoginForm.tsx",
+    "status": "modified",
+    "additions": 8,
+    "deletions": 3,
+    "language": "typescript",
+    "hunks": [
+      {
+        "oldStart": 20,
+        "oldLines": 10,
+        "newStart": 20,
+        "newLines": 15,
+        "lines": [
+          {
+            "lineNumber": 1,
+            "type": "header",
+            "content": "@@ -20,10 +20,15 @@"
+          },
+          {
+            "lineNumber": 2,
+            "oldLineNumber": 20,
+            "newLineNumber": 20,
+            "type": "context",
+            "content": "  const handleSubmit = async (e: FormEvent) => {"
+          },
+          {
+            "lineNumber": 3,
+            "oldLineNumber": 21,
+            "newLineNumber": 21,
+            "type": "context",
+            "content": "    e.preventDefault()"
+          },
+          {
+            "lineNumber": 4,
+            "oldLineNumber": 22,
+            "type": "remove",
+            "content": "    const result = await login(email, password)"
+          },
+          {
+            "lineNumber": 5,
+            "newLineNumber": 22,
+            "type": "add",
+            "content": "    setLoading(true)",
+            "hasComment": true
+          },
+          {
+            "lineNumber": 6,
+            "newLineNumber": 23,
+            "type": "add",
+            "content": "    try {"
+          },
+          {
+            "lineNumber": 7,
+            "newLineNumber": 24,
+            "type": "add",
+            "content": "      const result = await login(email, password)",
+            "hasComment": true
+          },
+          {
+            "lineNumber": 8,
+            "newLineNumber": 25,
+            "type": "add",
+            "content": "      if (result.success) {"
+          },
+          {
+            "lineNumber": 9,
+            "newLineNumber": 26,
+            "type": "add",
+            "content": "        navigate('/dashboard')"
+          },
+          {
+            "lineNumber": 10,
+            "newLineNumber": 27,
+            "type": "add",
+            "content": "      }"
+          },
+          {
+            "lineNumber": 11,
+            "newLineNumber": 28,
+            "type": "add",
+            "content": "    } catch (error) {"
+          },
+          {
+            "lineNumber": 12,
+            "newLineNumber": 29,
+            "type": "add",
+            "content": "      setError(error.message)"
+          },
+          {
+            "lineNumber": 13,
+            "newLineNumber": 30,
+            "type": "add",
+            "content": "    } finally {"
+          },
+          {
+            "lineNumber": 14,
+            "newLineNumber": 31,
+            "type": "add",
+            "content": "      setLoading(false)"
+          },
+          {
+            "lineNumber": 15,
+            "newLineNumber": 32,
+            "type": "add",
+            "content": "    }"
+          },
+          {
+            "lineNumber": 16,
+            "oldLineNumber": 23,
+            "type": "remove",
+            "content": "    if (result.success) {"
+          },
+          {
+            "lineNumber": 17,
+            "oldLineNumber": 24,
+            "type": "remove",
+            "content": "      navigate('/dashboard')"
+          },
+          {
+            "lineNumber": 18,
+            "oldLineNumber": 25,
+            "type": "remove",
+            "content": "    }"
+          },
+          {
+            "lineNumber": 19,
+            "oldLineNumber": 26,
+            "newLineNumber": 33,
+            "type": "context",
+            "content": "  }"
+          }
+        ]
+      }
+    ]
+  },
+  "file-7": {
+    "id": "file-7",
+    "fileName": "src/hooks/useAuth.ts",
+    "status": "modified",
+    "additions": 5,
+    "deletions": 2,
+    "language": "typescript",
+    "hunks": [
+      {
+        "oldStart": 10,
+        "oldLines": 8,
+        "newStart": 10,
+        "newLines": 11,
+        "lines": [
+          {
+            "lineNumber": 1,
+            "type": "header",
+            "content": "@@ -10,8 +10,11 @@"
+          },
+          {
+            "lineNumber": 2,
+            "oldLineNumber": 10,
+            "newLineNumber": 10,
+            "type": "context",
+            "content": "export const useAuth = () => {"
+          },
+          {
+            "lineNumber": 3,
+            "oldLineNumber": 11,
+            "newLineNumber": 11,
+            "type": "context",
+            "content": "  const [user, setUser] = useState<User | null>(null)"
+          },
+          {
+            "lineNumber": 4,
+            "oldLineNumber": 12,
+            "type": "remove",
+            "content": "  const [isAuthenticated, setIsAuthenticated] = useState(false)"
+          },
+          {
+            "lineNumber": 5,
+            "newLineNumber": 12,
+            "type": "add",
+            "content": "  const isAuthenticated = !!user",
+            "hasComment": true
+          },
+          {
+            "lineNumber": 6,
+            "oldLineNumber": 13,
+            "newLineNumber": 13,
+            "type": "context",
+            "content": ""
+          },
+          {
+            "lineNumber": 7,
+            "oldLineNumber": 14,
+            "newLineNumber": 14,
+            "type": "context",
+            "content": "  const login = async (credentials: Credentials) => {"
+          },
+          {
+            "lineNumber": 8,
+            "oldLineNumber": 15,
+            "type": "remove",
+            "content": "    const user = await authApi.login(credentials)"
+          },
+          {
+            "lineNumber": 9,
+            "newLineNumber": 15,
+            "type": "add",
+            "content": "    const userData = await authApi.login(credentials)"
+          },
+          {
+            "lineNumber": 10,
+            "newLineNumber": 16,
+            "type": "add",
+            "content": "    setUser(userData)"
+          },
+          {
+            "lineNumber": 11,
+            "oldLineNumber": 16,
+            "type": "remove",
+            "content": "    setUser(user)"
+          },
+          {
+            "lineNumber": 12,
+            "oldLineNumber": 17,
+            "type": "remove",
+            "content": "    setIsAuthenticated(true)"
+          },
+          {
+            "lineNumber": 13,
+            "newLineNumber": 17,
+            "type": "add",
+            "content": "    return userData"
+          },
+          {
+            "lineNumber": 14,
+            "oldLineNumber": 18,
+            "newLineNumber": 18,
+            "type": "context",
+            "content": "  }"
+          }
+        ]
+      }
+    ]
+  },
+  "file-10": {
+    "id": "file-10",
+    "fileName": "src/utils/validation.ts",
+    "status": "modified",
+    "additions": 15,
+    "deletions": 8,
+    "language": "typescript",
+    "hunks": [
+      {
+        "oldStart": 1,
+        "oldLines": 20,
+        "newStart": 1,
+        "newLines": 27,
+        "lines": [
+          {
+            "lineNumber": 1,
+            "type": "header",
+            "content": "@@ -1,20 +1,27 @@"
+          },
+          {
+            "lineNumber": 2,
+            "oldLineNumber": 1,
+            "type": "remove",
+            "content": "export const validateEmail = (email: string): boolean => {"
+          },
+          {
+            "lineNumber": 3,
+            "newLineNumber": 1,
+            "type": "add",
+            "content": "export const validateEmail = (email: string): { valid: boolean; error?: string } => {",
+            "hasComment": true
+          },
+          {
+            "lineNumber": 4,
+            "oldLineNumber": 2,
+            "type": "remove",
+            "content": "  const regex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/"
+          },
+          {
+            "lineNumber": 5,
+            "newLineNumber": 2,
+            "type": "add",
+            "content": "  if (!email) {"
+          },
+          {
+            "lineNumber": 6,
+            "newLineNumber": 3,
+            "type": "add",
+            "content": "    return { valid: false, error: 'Email is required' }"
+          },
+          {
+            "lineNumber": 7,
+            "newLineNumber": 4,
+            "type": "add",
+            "content": "  }"
+          },
+          {
+            "lineNumber": 8,
+            "newLineNumber": 5,
+            "type": "add",
+            "content": ""
+          },
+          {
+            "lineNumber": 9,
+            "newLineNumber": 6,
+            "type": "add",
+            "content": "  const regex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/",
+            "hasComment": true
+          },
+          {
+            "lineNumber": 10,
+            "oldLineNumber": 3,
+            "type": "remove",
+            "content": "  return regex.test(email)"
+          },
+          {
+            "lineNumber": 11,
+            "newLineNumber": 7,
+            "type": "add",
+            "content": "  if (!regex.test(email)) {"
+          },
+          {
+            "lineNumber": 12,
+            "newLineNumber": 8,
+            "type": "add",
+            "content": "    return { valid: false, error: 'Invalid email format' }"
+          },
+          {
+            "lineNumber": 13,
+            "newLineNumber": 9,
+            "type": "add",
+            "content": "  }"
+          },
+          {
+            "lineNumber": 14,
+            "newLineNumber": 10,
+            "type": "add",
+            "content": ""
+          },
+          {
+            "lineNumber": 15,
+            "newLineNumber": 11,
+            "type": "add",
+            "content": "  return { valid: true }"
+          },
+          {
+            "lineNumber": 16,
+            "oldLineNumber": 4,
+            "newLineNumber": 12,
+            "type": "context",
+            "content": "}"
+          },
+          {
+            "lineNumber": 17,
+            "oldLineNumber": 5,
+            "newLineNumber": 13,
+            "type": "context",
+            "content": ""
+          },
+          {
+            "lineNumber": 18,
+            "oldLineNumber": 6,
+            "type": "remove",
+            "content": "export const validatePassword = (password: string): boolean => {"
+          },
+          {
+            "lineNumber": 19,
+            "newLineNumber": 14,
+            "type": "add",
+            "content": "export const validatePassword = (password: string): { valid: boolean; error?: string } => {",
+            "hasComment": true
+          },
+          {
+            "lineNumber": 20,
+            "oldLineNumber": 7,
+            "type": "remove",
+            "content": "  return password.length >= 8"
+          },
+          {
+            "lineNumber": 21,
+            "newLineNumber": 15,
+            "type": "add",
+            "content": "  if (!password) {"
+          },
+          {
+            "lineNumber": 22,
+            "newLineNumber": 16,
+            "type": "add",
+            "content": "    return { valid: false, error: 'Password is required' }"
+          },
+          {
+            "lineNumber": 23,
+            "newLineNumber": 17,
+            "type": "add",
+            "content": "  }"
+          },
+          {
+            "lineNumber": 24,
+            "newLineNumber": 18,
+            "type": "add",
+            "content": ""
+          },
+          {
+            "lineNumber": 25,
+            "newLineNumber": 19,
+            "type": "add",
+            "content": "  if (password.length < 8) {",
+            "hasComment": true
+          },
+          {
+            "lineNumber": 26,
+            "newLineNumber": 20,
+            "type": "add",
+            "content": "    return { valid: false, error: 'Password must be at least 8 characters' }"
+          },
+          {
+            "lineNumber": 27,
+            "newLineNumber": 21,
+            "type": "add",
+            "content": "  }"
+          },
+          {
+            "lineNumber": 28,
+            "newLineNumber": 22,
+            "type": "add",
+            "content": ""
+          },
+          {
+            "lineNumber": 29,
+            "newLineNumber": 23,
+            "type": "add",
+            "content": "  return { valid: true }"
+          },
+          {
+            "lineNumber": 30,
+            "oldLineNumber": 8,
+            "newLineNumber": 24,
+            "type": "context",
+            "content": "}"
+          }
+        ]
+      }
+    ]
+  }
+}

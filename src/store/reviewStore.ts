@@ -1,11 +1,26 @@
-import { create } from "zustand";
+import { create } from 'zustand'
+import { ReviewState, FilterState } from '../types'
 
-type ReviewState = {
-  selectedRepoId: string | null;
-  setSelectedRepoId: (id: string) => void;
-};
+const initialFilters: FilterState = {
+  severity: [],
+  searchQuery: '',
+  showOnlyFilesWithIssues: false,
+}
 
-export const useReviewStore = create<ReviewState>((set) => ({
+export const useReviewStore = create<ReviewState>(set => ({
   selectedRepoId: null,
-  setSelectedRepoId: (id) => set({ selectedRepoId: id }),
-}));
+  selectedFileId: null,
+  filters: initialFilters,
+
+  setSelectedRepo: (repoId: string) =>
+    set({ selectedRepoId: repoId, selectedFileId: null }),
+
+  setSelectedFile: (fileId: string | null) => set({ selectedFileId: fileId }),
+
+  setFilters: (filters: Partial<FilterState>) =>
+    set(state => ({
+      filters: { ...state.filters, ...filters },
+    })),
+
+  resetFilters: () => set({ filters: initialFilters }),
+}))

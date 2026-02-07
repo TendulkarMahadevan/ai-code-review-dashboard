@@ -1,10 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import files from "../mocks/files.json";
-import { fetchWithDelay } from "../services/api";
+import { useQuery } from '@tanstack/react-query'
+import { api } from '../services/api'
 
-export const useFiles = (repoId: string | null) =>
-  useQuery<string[]>({
-    queryKey: ["files", repoId],
+export const useFiles = (repoId: string | null) => {
+  return useQuery({
+    queryKey: ['files', repoId],
+    queryFn: () => api.fetchFiles(repoId!),
     enabled: !!repoId,
-    queryFn: () => fetchWithDelay(files[repoId as keyof typeof files]),
-  });
+    staleTime: 5 * 60 * 1000,
+  })
+}

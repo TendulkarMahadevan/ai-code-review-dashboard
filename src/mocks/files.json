@@ -1,11 +1,126 @@
 {
   "repo-1": [
-    "src/App.tsx",
-    "src/pages/Dashboard.tsx",
-    "src/components/RepoList.tsx"
+    {
+      "id": "file-1",
+      "name": "src",
+      "path": "src",
+      "type": "directory",
+      "children": [
+        {
+          "id": "file-2",
+          "name": "components",
+          "path": "src/components",
+          "type": "directory",
+          "children": [
+            {
+              "id": "file-3",
+              "name": "UserProfile.tsx",
+              "path": "src/components/UserProfile.tsx",
+              "type": "file",
+              "commentCount": 3
+            },
+            {
+              "id": "file-4",
+              "name": "Dashboard.tsx",
+              "path": "src/components/Dashboard.tsx",
+              "type": "file",
+              "commentCount": 0
+            },
+            {
+              "id": "file-5",
+              "name": "LoginForm.tsx",
+              "path": "src/components/LoginForm.tsx",
+              "type": "file",
+              "commentCount": 2
+            }
+          ]
+        },
+        {
+          "id": "file-6",
+          "name": "hooks",
+          "path": "src/hooks",
+          "type": "directory",
+          "children": [
+            {
+              "id": "file-7",
+              "name": "useAuth.ts",
+              "path": "src/hooks/useAuth.ts",
+              "type": "file",
+              "commentCount": 1
+            },
+            {
+              "id": "file-8",
+              "name": "useFetch.ts",
+              "path": "src/hooks/useFetch.ts",
+              "type": "file",
+              "commentCount": 0
+            }
+          ]
+        },
+        {
+          "id": "file-9",
+          "name": "utils",
+          "path": "src/utils",
+          "type": "directory",
+          "children": [
+            {
+              "id": "file-10",
+              "name": "validation.ts",
+              "path": "src/utils/validation.ts",
+              "type": "file",
+              "commentCount": 4
+            },
+            {
+              "id": "file-11",
+              "name": "formatters.ts",
+              "path": "src/utils/formatters.ts",
+              "type": "file",
+              "commentCount": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "file-12",
+      "name": "package.json",
+      "path": "package.json",
+      "type": "file",
+      "commentCount": 0
+    }
   ],
   "repo-2": [
-    "index.js",
-    "routes/user.js"
+    {
+      "id": "file-13",
+      "name": "src",
+      "path": "src",
+      "type": "directory",
+      "children": [
+        {
+          "id": "file-14",
+          "name": "schema.graphql",
+          "path": "src/schema.graphql",
+          "type": "file",
+          "commentCount": 1
+        }
+      ]
+    }
+  ],
+  "repo-3": [
+    {
+      "id": "file-15",
+      "name": "pipeline",
+      "path": "pipeline",
+      "type": "directory",
+      "children": [
+        {
+          "id": "file-16",
+          "name": "extract.py",
+          "path": "pipeline/extract.py",
+          "type": "file",
+          "commentCount": 2
+        }
+      ]
+    }
   ]
 }

@@ -1,0 +1,118 @@
+[
+  {
+    "id": "comment-1",
+    "fileId": "file-3",
+    "fileName": "src/components/UserProfile.tsx",
+    "lineNumber": 10,
+    "severity": "info",
+    "category": "Best Practice",
+    "message": "Optional prop added. Consider documenting this prop in component documentation or JSDoc comments.",
+    "aiConfidence": 0.85,
+    "timestamp": "2024-02-06T10:30:00Z"
+  },
+  {
+    "id": "comment-2",
+    "fileId": "file-3",
+    "fileName": "src/components/UserProfile.tsx",
+    "lineNumber": 11,
+    "severity": "warning",
+    "category": "Accessibility",
+    "message": "showAvatar prop controls visual content. Ensure there's alternative text or ARIA labels for users who can't see images.",
+    "suggestion": "Add aria-label or alt text handling: {showAvatar && <img src={user.avatar} alt={`${user.name}'s profile picture`} />}",
+    "aiConfidence": 0.92,
+    "timestamp": "2024-02-06T10:30:05Z"
+  },
+  {
+    "id": "comment-3",
+    "fileId": "file-3",
+    "fileName": "src/components/UserProfile.tsx",
+    "lineNumber": 18,
+    "severity": "critical",
+    "category": "Error Handling",
+    "message": "The error object is displayed directly. This could expose sensitive error details or stack traces to end users.",
+    "suggestion": "Use a user-friendly error message instead:\nif (error) return <div>Unable to load user profile. Please try again.</div>",
+    "aiConfidence": 0.95,
+    "timestamp": "2024-02-06T10:30:10Z"
+  },
+  {
+    "id": "comment-4",
+    "fileId": "file-5",
+    "fileName": "src/components/LoginForm.tsx",
+    "lineNumber": 22,
+    "severity": "info",
+    "category": "State Management",
+    "message": "Good practice: Loading state is now properly managed before async operation.",
+    "aiConfidence": 0.88,
+    "timestamp": "2024-02-06T11:15:00Z"
+  },
+  {
+    "id": "comment-5",
+    "fileId": "file-5",
+    "fileName": "src/components/LoginForm.tsx",
+    "lineNumber": 24,
+    "severity": "warning",
+    "category": "Security",
+    "message": "Login credentials are being sent. Ensure this uses HTTPS and the API endpoint implements rate limiting to prevent brute force attacks.",
+    "suggestion": "Consider adding client-side rate limiting or CAPTCHA after multiple failed attempts.",
+    "aiConfidence": 0.90,
+    "timestamp": "2024-02-06T11:15:05Z"
+  },
+  {
+    "id": "comment-6",
+    "fileId": "file-7",
+    "fileName": "src/hooks/useAuth.ts",
+    "lineNumber": 12,
+    "severity": "info",
+    "category": "Code Quality",
+    "message": "Derived state pattern used correctly. isAuthenticated is now computed from user state, eliminating redundant state management.",
+    "aiConfidence": 0.93,
+    "timestamp": "2024-02-06T12:00:00Z"
+  },
+  {
+    "id": "comment-7",
+    "fileId": "file-10",
+    "fileName": "src/utils/validation.ts",
+    "lineNumber": 3,
+    "severity": "warning",
+    "category": "Type Safety",
+    "message": "Return type changed from boolean to object. This is a breaking change. Ensure all call sites are updated to handle the new return type.",
+    "suggestion": "Consider adding a deprecation period or version bump if this is a library function.",
+    "aiConfidence": 0.97,
+    "timestamp": "2024-02-06T14:20:00Z"
+  },
+  {
+    "id": "comment-8",
+    "fileId": "file-10",
+    "fileName": "src/utils/validation.ts",
+    "lineNumber": 9,
+    "severity": "critical",
+    "category": "Security",
+    "message": "Basic email regex validation is not comprehensive. This pattern can be bypassed with various edge cases.",
+    "suggestion": "Consider using a well-tested email validation library or implementing RFC 5322 compliant validation:\nimport validator from 'validator';\nif (!validator.isEmail(email)) { ... }",
+    "aiConfidence": 0.89,
+    "timestamp": "2024-02-06T14:20:05Z"
+  },
+  {
+    "id": "comment-9",
+    "fileId": "file-10",
+    "fileName": "src/utils/validation.ts",
+    "lineNumber": 19,
+    "severity": "info",
+    "category": "Code Quality",
+    "message": "Improved error messaging for password validation. Good UX improvement.",
+    "aiConfidence": 0.86,
+    "timestamp": "2024-02-06T14:20:10Z"
+  },
+  {
+    "id": "comment-10",
+    "fileId": "file-10",
+    "fileName": "src/utils/validation.ts",
+    "lineNumber": 25,
+    "severity": "warning",
+    "category": "Security",
+    "message": "Password validation only checks length. Consider enforcing stronger password requirements (uppercase, lowercase, numbers, special characters).",
+    "suggestion": "Add comprehensive password strength validation:\nconst hasUpperCase = /[A-Z]/.test(password);\nconst hasLowerCase = /[a-z]/.test(password);\nconst hasNumbers = /\\d/.test(password);\nconst hasSpecialChar = /[!@#$%^&*]/.test(password);",
+    "aiConfidence": 0.94,
+    "timestamp": "2024-02-06T14:20:15Z"
+  }
+]
