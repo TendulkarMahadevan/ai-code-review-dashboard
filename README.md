@@ -1,12 +1,12 @@
 # AI Code Review Dashboard
 
-A production-quality frontend application for visualizing code diffs and AI-generated review comments. Built with performance, accessibility, and maintainability as core principles.
+A production quality frontend application for visualizing code diffs and AI generated review comments. Built with performance, accessibility, and maintainability as core principles.
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
 
-## ✨ Features
+## Features
 
 ### Core Functionality
 - **Repository Selection**: Dropdown selector with repository metadata display
@@ -23,7 +23,7 @@ A production-quality frontend application for visualizing code diffs and AI-gene
 - **Loading States**: Skeleton screens for better perceived performance
 - **Error Handling**: Graceful error states with user-friendly messages
 
-## 🛠 Tech Stack
+## Tech Stack
 
 ### Core Libraries
 - **React 18.2** - UI library with concurrent features
@@ -91,119 +91,3 @@ This separation provides clear boundaries between client and server state, impro
 3. **Virtual Scrolling Ready**: File tree structure supports future virtualization
 4. **Memoized Renders**: DiffLine components are memoized to prevent re-renders
 5. **Optimistic Updates**: React Query configuration for instant UI feedback
-
-## ♿ Accessibility Features
-
-### Keyboard Navigation
-- **Arrow Keys (↑/↓)**: Navigate between files
-- **Vim-style (j/k)**: Alternative navigation for power users
-- **Tab**: Focus management through interactive elements
-- **Enter/Space**: Activate buttons and toggle states
-
-### Screen Reader Support
-- ARIA labels on all interactive elements
-- Semantic HTML structure
-- Status announcements for loading/error states
-- Descriptive button labels
-
-### Visual Accessibility
-- WCAG AA compliant color contrast
-- Focus indicators on all interactive elements
-- Clear visual hierarchy
-- Resizable text support
-
-### Keyboard-Only Operation
-All features fully accessible without a mouse:
-- Repository selection
-- File navigation
-- Comment filtering
-- Search functionality
-
-## Getting Started
-
-### Prerequisites
-- Node.js 18+ and npm 9+
-
-### Installation
-
-```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Run tests
-npm test
-
-# Lint code
-npm run lint
-```
-
-### Development Server
-The app will be available at `http://localhost:3000`
-
-## Testing
-
-### Test Coverage
-- **FileTree Component**: Rendering, interaction, and state updates
-- **DiffViewer Component**: Diff display and comment integration
-- **Severity Filters**: State management and filter logic
-
-### Running Tests
-```bash
-# Run all tests
-npm test
-
-# Run tests in watch mode
-npm test -- --watch
-
-# Run tests with coverage
-npm test -- --coverage
-```
-
-## Design Philosophy
-
-### Typography Hierarchy
-- **Display**: Outfit (headings, emphasis)
-- **Body**: DM Sans (readable, modern)
-- **Code**: JetBrains Mono (monospace, developer-friendly)
-
-### Color Palette
-- **Primary**: Blue tones for interactive elements
-- **Severity Colors**:
-  - Info: Blue (#0ea5e9)
-  - Warning: Amber (#f59e0b)
-  - Critical: Red (#ef4444)
-- **Neutrals**: Gray scale for backgrounds and text
-
-### Visual Language
-- Clean, minimal developer-focused UI
-- Subtle shadows and borders
-- Generous whitespace
-- Color used purposefully for severity and status
-
-## Performance Considerations
-
-### Bundle Size
-- Tree-shaking enabled via Vite
-- No unnecessary dependencies
-- Tailwind CSS purged in production
-
-### Runtime Performance
-- Virtualization-ready file tree structure
-- Memoized expensive computations
-- Debounced user inputs
-- Lazy loading preparation
-
-### Network Optimization
-- React Query caching (5-minute stale time)
-- Minimal re-fetching
-- Optimistic UI updates
-- Mock delays simulate real network conditions
-
-
-
