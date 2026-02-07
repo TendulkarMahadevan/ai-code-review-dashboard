@@ -2,6 +2,8 @@
 
 A production quality frontend application for visualizing code diffs and AI generated review comments. Built with performance, accessibility, and maintainability as core principles.
 
+** NEW: Upload your own code files for review!** No longer limited to demo data.
+
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
@@ -9,6 +11,7 @@ A production quality frontend application for visualizing code diffs and AI gene
 ## Features
 
 ### Core Functionality
+- **File Upload**: Drag & drop your own code files for instant diff viewing
 - **Repository Selection**: Dropdown selector with repository metadata display
 - **Interactive File Explorer**: Tree view with comment count badges and keyboard navigation
 - **Advanced Diff Viewer**: Unified diff display with syntax highlighting and line numbers
@@ -91,3 +94,4 @@ This separation provides clear boundaries between client and server state, impro
 3. **Virtual Scrolling Ready**: File tree structure supports future virtualization
 4. **Memoized Renders**: DiffLine components are memoized to prevent re-renders
 5. **Optimistic Updates**: React Query configuration for instant UI feedback
+
