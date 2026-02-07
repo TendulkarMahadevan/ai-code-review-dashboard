@@ -110,15 +110,14 @@ This separation provides clear boundaries between client and server state, impro
 ### Diff Viewer with AI Comments
 ![Diff Viewer](./screenshots/comment-section.png)
 
-## ⚖️ Trade-offs & Future Improvements
+## Future Improvements
 
 - Mocked APIs used to isolate frontend concerns
 - Diff virtualization deferred due to current dataset size
 - Test coverage focuses on critical interaction paths
 - Backend integration can be added with minimal changes to the data layer
 
-## Getting Started
+## To run the project
 
 ```bash
-npm install
 npm run dev
