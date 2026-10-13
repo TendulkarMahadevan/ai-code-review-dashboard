@@ -117,13 +117,13 @@ npm run dev        # http://localhost:3000
 
 ### Scripts
 
-| Command | What it does |
-|---|---|
-| `npm run dev` | Start the Vite dev server |
-| `npm run build` | Typecheck and build for production |
-| `npm run lint` | ESLint (zero warnings allowed) |
-| `npm run typecheck` | `tsc --noEmit` |
-| `npm test` | Jest unit/component tests |
-| `npm run format` | Prettier |
+| Command             | What it does                       |
+| ------------------- | ---------------------------------- |
+| `npm run dev`       | Start the Vite dev server          |
+| `npm run build`     | Typecheck and build for production |
+| `npm run lint`      | ESLint (zero warnings allowed)     |
+| `npm run typecheck` | `tsc --noEmit`                     |
+| `npm test`          | Jest unit/component tests          |
+| `npm run format`    | Prettier                           |
 
 CI (`.github/workflows/ci.yml`) runs lint, typecheck, tests and build on every push and PR.
