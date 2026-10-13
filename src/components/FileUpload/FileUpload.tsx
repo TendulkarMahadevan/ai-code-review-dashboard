@@ -17,41 +17,50 @@ export interface UploadedFileData {
 export const FileUpload: React.FC<FileUploadProps> = ({ onFilesUploaded, className = '' }) => {
   const [isDragging, setIsDragging] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
-  const processFiles = async (fileList: FileList) => {
-    setIsProcessing(true)
-    const uploadedFiles: UploadedFileData[] = []
+  const processFiles = useCallback(
+    async (fileList: FileList) => {
+      setIsProcessing(true)
+      setErrorMessage(null)
+      const skipped: string[] = []
+      const uploadedFiles: UploadedFileData[] = []
 
-    try {
-      for (let i = 0; i < fileList.length; i++) {
-        const file = fileList[i]
-        
-        // Only accept text files
-        if (!file.type.startsWith('text/') && !isCodeFile(file.name)) {
-          console.warn(`Skipping non-text file: ${file.name}`)
-          continue
+      try {
+        for (let i = 0; i < fileList.length; i++) {
+          const file = fileList[i]
+
+          // Only accept text files
+          if (!file.type.startsWith('text/') && !isCodeFile(file.name)) {
+            skipped.push(file.name)
+            continue
+          }
+
+          const content = await readFileAsText(file)
+          uploadedFiles.push({
+            id: generateFileId(file.name),
+            name: file.name,
+            content,
+            language: detectLanguage(file.name),
+            timestamp: new Date(),
+          })
         }
 
-        const content = await readFileAsText(file)
-        uploadedFiles.push({
-          id: generateFileId(file.name),
-          name: file.name,
-          content,
-          language: detectLanguage(file.name),
-          timestamp: new Date(),
-        })
+        if (uploadedFiles.length > 0) {
+          onFilesUploaded(uploadedFiles)
+        }
+        if (skipped.length > 0) {
+          setErrorMessage(`Skipped unsupported files: ${skipped.join(', ')}`)
+        }
+      } catch (error) {
+        console.error('Error processing files:', error)
+        setErrorMessage('Error processing files. Please try again.')
+      } finally {
+        setIsProcessing(false)
       }
-
-      if (uploadedFiles.length > 0) {
-        onFilesUploaded(uploadedFiles)
-      }
-    } catch (error) {
-      console.error('Error processing files:', error)
-      alert('Error processing files. Please try again.')
-    } finally {
-      setIsProcessing(false)
-    }
-  }
+    },
+    [onFilesUploaded]
+  )
 
   const handleDrop = useCallback(
     (e: React.DragEvent<HTMLDivElement>) => {
@@ -63,7 +72,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onFilesUploaded, classNa
         processFiles(files)
       }
     },
-    [onFilesUploaded]
+    [processFiles]
   )
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -112,9 +121,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onFilesUploaded, classNa
           ) : (
             <>
               <div className="text-5xl mb-4">📁</div>
-              <p className="text-lg font-semibold text-gray-900 mb-2">
-                Upload Your Code Files
-              </p>
+              <p className="text-lg font-semibold text-gray-900 mb-2">Upload Your Code Files</p>
               <p className="text-sm text-gray-600 mb-4">
                 Drag and drop files here, or click to browse
               </p>
@@ -131,6 +138,11 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onFilesUploaded, classNa
           )}
         </div>
       </div>
+      {errorMessage && (
+        <p role="alert" className="mt-2 text-sm text-red-700">
+          {errorMessage}
+        </p>
+      )}
     </div>
   )
 }

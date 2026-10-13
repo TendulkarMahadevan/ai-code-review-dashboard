@@ -35,12 +35,9 @@ export const getLanguageClass = (language?: string): string => {
   return `language-${language}`
 }
 
-export const highlightSyntax = (content: string, language?: string): string => {
-  return content
+interface HasCommentCount {
+  commentCount?: number
 }
 
-export const countTotalComments = (files: unknown[]): number => {
-  return files.reduce((total, file: any) => {
-    return total + (file.commentCount || 0)
-  }, 0)
-}
+export const countTotalComments = (files: HasCommentCount[]): number =>
+  files.reduce((total, file) => total + (file.commentCount || 0), 0)

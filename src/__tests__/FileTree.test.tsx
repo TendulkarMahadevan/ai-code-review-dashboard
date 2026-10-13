@@ -57,7 +57,6 @@ describe('FileTree', () => {
     expect(screen.getByText('App.tsx')).toBeVisible()
 
     fireEvent.click(directory)
-    
   })
 
   it('shows empty state when no files', () => {

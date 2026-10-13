@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useRepos } from '../hooks/useRepos'
 import { useFiles } from '../hooks/useFiles'
 import { useDiff, useReviews } from '../hooks/useDiff'
@@ -12,7 +12,8 @@ import { SearchInput } from '../components/SearchInput/SearchInput'
 import { SeverityBadge } from '../components/SeverityBadge/SeverityBadge'
 import { FileUpload, UploadedFileData } from '../components/FileUpload/FileUpload'
 import { Button } from '../components/UI'
-import { Skeleton, SkeletonCard } from '../components/Skeleton/Skeleton'
+import { SkeletonCard } from '../components/Skeleton/Skeleton'
+import { ErrorMessage } from '../components/ErrorMessage'
 import { SeverityLevel, FileNode } from '../types'
 import { generateDiff } from '../utils/diffGenerator'
 
@@ -32,12 +33,16 @@ export const DashboardEnhanced: React.FC = () => {
   } = useReviewStore()
 
   const [uploadMode, setUploadMode] = useState(false)
-  const [originalContent, setOriginalContent] = useState<Record<string, string>>({})
 
-  const { data: repos, isLoading: reposLoading } = useRepos()
-  const { data: mockFiles, isLoading: filesLoading } = useFiles(selectedRepoId)
-  const { data: mockDiff, isLoading: diffLoading } = useDiff(selectedFileId)
-  const { data: allReviews } = useReviews()
+  const reposQuery = useRepos()
+  const filesQuery = useFiles(selectedRepoId)
+  const diffQuery = useDiff(uploadMode ? null : selectedFileId)
+  const reviewsQuery = useReviews()
+
+  const { data: repos, isLoading: reposLoading } = reposQuery
+  const { data: mockFiles, isLoading: filesLoading } = filesQuery
+  const { data: mockDiff, isLoading: diffLoading } = diffQuery
+  const { data: allReviews } = reviewsQuery
 
   // Combine mock files with uploaded files
   const files = useMemo(() => {
@@ -51,7 +56,7 @@ export const DashboardEnhanced: React.FC = () => {
         commentCount: 0,
       }))
 
-return [
+      return [
         {
           id: 'uploaded-root',
           name: 'Uploaded Files',
@@ -71,6 +76,12 @@ return [
     }
     return mockDiff
   }, [uploadMode, selectedFileId, uploadedDiffs, mockDiff])
+
+  // Move focus to the diff region when a file is selected so keyboard/screen-reader users land on it.
+  const diffRegionRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (selectedFileId) diffRegionRef.current?.focus({ preventScroll: true })
+  }, [selectedFileId])
 
   useKeyboardNavigation({
     files: files || [],
@@ -128,12 +139,6 @@ return [
   const handleFilesUploaded = (uploadedFilesData: UploadedFileData[]) => {
     uploadedFilesData.forEach(file => {
       addUploadedFile(file)
-      
-      // Store original content for future diff comparison
-      setOriginalContent(prev => ({
-        ...prev,
-        [file.id]: file.content,
-      }))
 
       // Generate a diff comparing empty content vs uploaded content (shows all as additions)
       const diff = generateDiff('', file.content, file.name)
@@ -145,16 +150,6 @@ return [
     }
   }
 
-  const handleUpdateFile = (fileId: string, newContent: string) => {
-    const original = originalContent[fileId] || ''
-    const file = uploadedFiles.find(f => f.id === fileId)
-    
-    if (file) {
-      const diff = generateDiff(original, newContent, file.name)
-      addUploadedDiff(fileId, diff)
-    }
-  }
-
   const handleToggleMode = () => {
     setUploadMode(!uploadMode)
     setSelectedFile(null)
@@ -162,7 +157,6 @@ return [
 
   const handleClearUploads = () => {
     clearUploadedFiles()
-    setOriginalContent({})
     setUploadMode(false)
   }
 
@@ -210,8 +204,10 @@ return [
 
       <main className="max-w-screen-2xl mx-auto px-6 py-6">
         <div className="mb-6 flex items-center gap-4">
-          {!uploadMode && <RepoSelector repositories={repos || []} isLoading={reposLoading} />}
-          
+          {!uploadMode && !reposQuery.isError && (
+            <RepoSelector repositories={repos || []} isLoading={reposLoading} />
+          )}
+
           <Button
             variant={uploadMode ? 'primary' : 'secondary'}
             onClick={handleToggleMode}
@@ -220,6 +216,24 @@ return [
             {uploadMode ? '← Back to Demo' : '📤 Upload Your Files'}
           </Button>
         </div>
+
+        {!uploadMode && reposQuery.isError && (
+          <ErrorMessage
+            title="Unable to load repositories"
+            error={reposQuery.error}
+            onRetry={() => reposQuery.refetch()}
+            className="mb-6"
+          />
+        )}
+
+        {reviewsQuery.isError && (
+          <ErrorMessage
+            title="Unable to load review comments"
+            error={reviewsQuery.error}
+            onRetry={() => reviewsQuery.refetch()}
+            className="mb-6"
+          />
+        )}
 
         {uploadMode && uploadedFiles.length === 0 && (
           <FileUpload onFilesUploaded={handleFilesUploaded} className="mb-6" />
@@ -249,6 +263,12 @@ return [
             <aside className="lg:col-span-3">
               {filesLoading && !uploadMode ? (
                 <SkeletonCard />
+              ) : filesQuery.isError && !uploadMode ? (
+                <ErrorMessage
+                  title="Unable to load files"
+                  error={filesQuery.error}
+                  onRetry={() => filesQuery.refetch()}
+                />
               ) : files.length > 0 ? (
                 <FileTree files={files} />
               ) : (
@@ -276,8 +296,15 @@ return [
                   </Button>
                 </div>
 
-                <div className="flex flex-wrap gap-2">
-                  <span className="text-sm font-medium text-gray-700 py-2">Filter by severity:</span>
+                <p className="sr-only" role="status" aria-live="polite">
+                  {filteredReviews.length} comment{filteredReviews.length !== 1 ? 's' : ''} match
+                  the current filters
+                </p>
+
+                <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by severity">
+                  <span className="text-sm font-medium text-gray-700 py-2">
+                    Filter by severity:
+                  </span>
                   {(['info', 'warning', 'critical'] as SeverityLevel[]).map(severity => (
                     <button
                       key={severity}
@@ -296,17 +323,28 @@ return [
               </div>
 
               {selectedFileId ? (
-                <>
+                <div
+                  ref={diffRegionRef}
+                  tabIndex={-1}
+                  className="space-y-6 outline-none"
+                  aria-label="File diff"
+                >
                   {diffLoading && !uploadMode ? (
                     <SkeletonCard />
+                  ) : diffQuery.isError && !uploadMode ? (
+                    <ErrorMessage
+                      title="Unable to load diff"
+                      error={diffQuery.error}
+                      onRetry={() => diffQuery.refetch()}
+                    />
                   ) : currentDiff ? (
                     <>
                       <DiffViewer diff={currentDiff} comments={filteredReviews} />
                       {uploadMode && (
                         <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
                           <p className="text-sm text-yellow-800">
-                            💡 <strong>Note:</strong> This is a frontend-only demo. To get AI-powered
-                            code reviews, integrate with an AI API or backend service.
+                            💡 <strong>Note:</strong> This is a frontend-only demo. To get
+                            AI-powered code reviews, integrate with an AI API or backend service.
                           </p>
                         </div>
                       )}
@@ -316,7 +354,7 @@ return [
                       <p className="text-gray-500">Unable to load diff</p>
                     </div>
                   )}
-                </>
+                </div>
               ) : (
                 <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
                   <div className="max-w-md mx-auto">
