@@ -29,8 +29,7 @@ export const useReviewStore = create<ExtendedReviewState>(set => ({
   uploadedFiles: [],
   uploadedDiffs: {},
 
-  setSelectedRepo: (repoId: string) =>
-    set({ selectedRepoId: repoId, selectedFileId: null }),
+  setSelectedRepo: (repoId: string) => set({ selectedRepoId: repoId, selectedFileId: null }),
 
   setSelectedFile: (fileId: string | null) => set({ selectedFileId: fileId }),
 
@@ -51,6 +50,5 @@ export const useReviewStore = create<ExtendedReviewState>(set => ({
       uploadedDiffs: { ...state.uploadedDiffs, [fileId]: diff },
     })),
 
-  clearUploadedFiles: () =>
-    set({ uploadedFiles: [], uploadedDiffs: {}, selectedFileId: null }),
+  clearUploadedFiles: () => set({ uploadedFiles: [], uploadedDiffs: {}, selectedFileId: null }),
 }))

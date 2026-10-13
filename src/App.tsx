@@ -1,6 +1,9 @@
-import React from 'react'
+import { Suspense, lazy } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import DashboardEnhanced from './pages/DashboardEnhanced'
+import { ErrorBoundary } from './components/ErrorBoundary'
+import { SkeletonCard } from './components/Skeleton/Skeleton'
+
+const DashboardEnhanced = lazy(() => import('./pages/DashboardEnhanced'))
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -13,9 +16,13 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <DashboardEnhanced />
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <Suspense fallback={<SkeletonCard />}>
+          <DashboardEnhanced />
+        </Suspense>
+      </QueryClientProvider>
+    </ErrorBoundary>
   )
 }
 

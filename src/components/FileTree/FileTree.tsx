@@ -11,11 +11,11 @@ interface FileTreeProps {
 interface FileTreeNodeProps {
   node: FileNode
   depth: number
-  isSelected: boolean
+  selectedId: string | null
   onSelect: (id: string) => void
 }
 
-const FileTreeNode: React.FC<FileTreeNodeProps> = ({ node, depth, isSelected, onSelect }) => {
+const FileTreeNode: React.FC<FileTreeNodeProps> = ({ node, depth, selectedId, onSelect }) => {
   const [isExpanded, setIsExpanded] = useState(true)
 
   const handleClick = () => {
@@ -34,21 +34,25 @@ const FileTreeNode: React.FC<FileTreeNodeProps> = ({ node, depth, isSelected, on
   }
 
   const paddingLeft = depth * 16
+  const isDirectory = node.type === 'directory'
+  const isSelected = !isDirectory && selectedId === node.id
 
   return (
     <div>
       <div
-        role={node.type === 'file' ? 'button' : 'treeitem'}
+        role="treeitem"
         tabIndex={0}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         className={`flex items-center gap-2 px-3 py-2 cursor-pointer transition-all rounded-md ${
-          isSelected && node.type === 'file'
+          isSelected
             ? 'bg-primary-100 text-primary-900 font-medium'
             : 'hover:bg-gray-100 text-gray-700'
         }`}
         style={{ paddingLeft: `${paddingLeft + 12}px` }}
-        aria-selected={isSelected}
+        aria-selected={isDirectory ? undefined : isSelected}
+        aria-expanded={isDirectory ? isExpanded : undefined}
+        aria-level={depth + 1}
         aria-label={`${node.type === 'directory' ? 'Folder' : 'File'}: ${node.name}`}
       >
         {node.type === 'directory' ? (
@@ -74,7 +78,7 @@ const FileTreeNode: React.FC<FileTreeNodeProps> = ({ node, depth, isSelected, on
               key={child.id}
               node={child}
               depth={depth + 1}
-              isSelected={isSelected}
+              selectedId={selectedId}
               onSelect={onSelect}
             />
           ))}
@@ -113,11 +117,11 @@ export const FileTree: React.FC<FileTreeProps> = ({ files, className = '' }) => 
     <div className={`bg-white rounded-xl border border-gray-200 ${className}`}>
       <div className="px-4 py-3 border-b border-gray-200 bg-gray-50 rounded-t-xl">
         <h2 className="text-lg font-bold text-gray-900">Files</h2>
-        <p className="text-sm text-gray-600 mt-1">
+        <p className="text-sm text-gray-600 mt-1" aria-live="polite">
           {totalFiles} files • {filesWithIssues} with issues
         </p>
       </div>
-      <div className="p-2 max-h-[calc(100vh-280px)] overflow-y-auto" role="tree">
+      <div className="p-2 max-h-[calc(100vh-280px)] overflow-y-auto" role="tree" aria-label="Files">
         {files.length === 0 ? (
           <div className="text-center py-8 text-gray-500">
             <p>No files found</p>
@@ -128,7 +132,7 @@ export const FileTree: React.FC<FileTreeProps> = ({ files, className = '' }) => 
               key={node.id}
               node={node}
               depth={0}
-              isSelected={selectedFileId === node.id}
+              selectedId={selectedFileId}
               onSelect={setSelectedFile}
             />
           ))

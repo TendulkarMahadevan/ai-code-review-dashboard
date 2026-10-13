@@ -3,6 +3,7 @@
 ## Installation & Setup
 
 ### 1. Install Dependencies
+
 ```bash
 cd ai-code-review-dashboard
 npm install
@@ -11,6 +12,7 @@ npm install
 This will install all required dependencies including React, TypeScript, Tailwind CSS, React Query, Zustand, and development tools.
 
 ### 2. Start Development Server
+
 ```bash
 npm run dev
 ```
@@ -18,6 +20,7 @@ npm run dev
 The application will open at `http://localhost:3000`
 
 ### 3. Build for Production
+
 ```bash
 npm run build
 ```
@@ -42,6 +45,7 @@ Production build will be in the `dist/` directory.
 ## Mock Data
 
 The application comes with realistic mock data:
+
 - 3 repositories
 - Multiple files with various comment counts
 - 4 files with detailed diffs
@@ -62,7 +66,9 @@ npm test         # Run tests
 ## Customization
 
 ### Adding New Repositories
+
 Edit `src/mocks/repos.json`:
+
 ```json
 {
   "id": "repo-4",
@@ -74,12 +80,15 @@ Edit `src/mocks/repos.json`:
 ```
 
 ### Adding Files
+
 Edit `src/mocks/files.json` and add your file structure under the repository ID.
 
 ### Adding Diffs
+
 Edit `src/mocks/diffs.json` with your diff hunks and lines.
 
 ### Adding Comments
+
 Edit `src/mocks/reviews.json` with AI-generated review comments.
 
 ## Technology Overview
@@ -95,12 +104,15 @@ Edit `src/mocks/reviews.json` with AI-generated review comments.
 ## Troubleshooting
 
 ### Port Already in Use
+
 If port 3000 is occupied, Vite will automatically use the next available port.
 
 ### TypeScript Errors
+
 Run `npm run build` to see all TypeScript errors. The dev server may still work with type errors.
 
 ### Missing Dependencies
+
 Delete `node_modules` and `package-lock.json`, then run `npm install` again.
 
 ## Next Steps
